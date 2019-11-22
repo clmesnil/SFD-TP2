@@ -1,0 +1,8 @@
+﻿  simul.cpp
+simul.cpp(187): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+simul.cpp(195): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+c:\users\clmesnil\desktop\tp 2 simu\consoleapplication1\consoleapplication1\simul.cpp(273): warning C4715: 'retirer_piece' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\clmesnil\desktop\tp 2 simu\consoleapplication1\consoleapplication1\simul.cpp(158): warning C4700: variable locale 'nb_pieces' non initialisée utilisée
+  AssemblyInfo.obj : /DEBUG:FASTLINK n'est pas pris en charge en présence de code managé ; redémarrage de l'édition des liens avec /DEBUG:FULL
+  ConsoleApplication1.vcxproj -> C:\Users\clmesnil\Desktop\TP 2 SIMU\ConsoleApplication1\Debug\ConsoleApplication1.exe
+  ConsoleApplication1.vcxproj -> C:\Users\clmesnil\Desktop\TP 2 SIMU\ConsoleApplication1\Debug\ConsoleApplication1.pdb (Partial PDB)
