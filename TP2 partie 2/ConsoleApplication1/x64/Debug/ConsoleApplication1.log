@@ -1,3 +1,16 @@
 ﻿  simul.cpp
-simul.cpp(19): error C2059: erreur de syntaxe : ','
-simul.cpp(19): error C2059: erreur de syntaxe : ':'
+c:\users\clmesnil\documents\github\sfd-tp2\tp2 partie 2\consoleapplication1\simul.h(20): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\clmesnil\documents\github\sfd-tp2\tp2 partie 2\consoleapplication1\simul.h(21): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\clmesnil\documents\github\sfd-tp2\tp2 partie 2\consoleapplication1\simul.h(62): warning C4091: 'typedef ' : ignoré à gauche de 'T_gamme' quand aucune variable n'est déclarée
+simul.cpp(24): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+simul.cpp(26): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+simul.cpp(44): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
+simul.cpp(62): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
+simul.cpp(59): warning C4101: 'temp' : variable locale non référencée
+simul.cpp(545): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+simul.cpp(553): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+c:\users\clmesnil\documents\github\sfd-tp2\tp2 partie 2\consoleapplication1\simul.cpp(635): warning C4715: 'retirer_piece' : les chemins de contrôle ne retournent pas tous une valeur
+  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
+  AssemblyInfo.obj : /DEBUG:FASTLINK n'est pas pris en charge en présence de code managé ; redémarrage de l'édition des liens avec /DEBUG:FULL
+  ConsoleApplication1.vcxproj -> C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 2\x64\Debug\ConsoleApplication1.exe
+  ConsoleApplication1.vcxproj -> C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 2\x64\Debug\ConsoleApplication1.pdb (Partial PDB)

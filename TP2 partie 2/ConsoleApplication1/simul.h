@@ -17,6 +17,9 @@ using namespace msclr::interop;
 
 const int MAX_ETAPES = 10;
 
+const int proba_p = 0.6;
+const int proba_q = 0.4;
+
 // Définitions des structures
 
 typedef struct T_Piece {
