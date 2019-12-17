@@ -329,7 +329,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				//on revient au début
 
 				temps = Machine_1.DPE;
-				P = Machine_1.contenu;
+				//P = Machine_1.contenu;
 				//choisir machine suivante
 				choisir_machine_etape(P, P.liste_machines[P.nb_etapes]);
 				
@@ -361,8 +361,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 								stop = 2;
 							}
 						}
-						E.etat = 1;
-						E.DPE = temps;
+						//E.etat = 1;
+						//E.DPE = temps;
 					}
 				}
 
@@ -390,8 +390,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 								stop = 2;
 							}
 						}
-						E.etat = 1;
-						E.DPE = temps;
+						//E.etat = 1;
+						//E.DPE = temps;
 					}
 				}
 				else
@@ -406,111 +406,111 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 
 		//here
 
-		else if (res == 4)						// la machine M2 avec la date la plus petite
+		else if (res == 4)						// la machine M3 avec la date la plus petite
 		{
-		temps = Machine_3.DPE;
-		P = Machine_3.contenu;
+			temps = Machine_3.DPE;
+			P = Machine_3.contenu;
 
-		etape = generer_prochaine_etape(P, P.liste_machines[P.nb_etapes]);
-		P.nb_etapes++;
-		if (etape == 0)
-		{
-			//on se casse tardplus
-			deposer_piece_sortie(S, P, affichage, temps);
-			if (est_vide(file_3))
+			etape = generer_prochaine_etape(P, P.liste_machines[P.nb_etapes]);
+			P.nb_etapes++;
+			if (etape == 0)
 			{
-				vider_machine(Machine_3);
-			}
-			else
-			{
-				T_Piece Nouv_Piece;
-				Nouv_Piece = retirer_piece(file_3);
-				deposer_piece_machine(Machine_3, Nouv_Piece, temps);
-				if (Machine_1.etat == 2) {
-					Machine_1.etat = 1;
-					Machine_1.DPE = temps;
-				}
-			}
-			temps_sejour_total += P.sortie_date - P.entree_date;
-			nb_pieces++;
-		}
-		else
-		{
-			//on revient au début
-
-			temps = Machine_1.DPE;
-			P = Machine_1.contenu;
-			//choisir machine suivante
-			choisir_machine_etape(P, P.liste_machines[P.nb_etapes]);
-
-
-			if (P.liste_machines[P.nb_etapes] == 1 && Machine_1.etat == 0)// Machine 1 libre
-			{
-				P.sortie_M1 = temps;
-				vider_machine(Machine_3);
-				deposer_piece_machine(Machine_1, P, temps);
+				//on se casse tardplus
+				deposer_piece_sortie(S, P, affichage, temps);
 				if (est_vide(file_3))
 				{
-					Machine_3.etat = 0;
-					Machine_3.DPE = 9999;
+					vider_machine(Machine_3);
 				}
 				else
 				{
-					stop = 0;
-					while (stop == 0)
-					{
-						P = retirer_piece(file_3);
-						delta = temps - P.entree_date;
-						if (delta < 3000)
-						{
-							stop = 1;
-							deposer_piece_machine(Machine_3, P, temps);
-						}
-						if (est_vide(file_3))
-						{
-							stop = 2;
-						}
+					T_Piece Nouv_Piece;
+					Nouv_Piece = retirer_piece(file_3);
+					deposer_piece_machine(Machine_3, Nouv_Piece, temps);
+					if (Machine_1.etat == 2) {
+						Machine_1.etat = 1;
+						Machine_1.DPE = temps;
 					}
-					E.etat = 1;
-					E.DPE = temps;
 				}
-			}
-
-			else if (est_pleine(file_1) == 0)  // File 2 n'est pas pleine
-			{
-				P.sortie_M1 = temps;
-				deposer_piece_file(file_1, P);
-				if (est_vide(file_3))
-				{
-					Machine_3.etat = 0;
-					Machine_3.DPE = 9999;
-				}
-				else {
-					stop = 0;
-					while (stop == 0)
-					{
-						P = retirer_piece(file_3);
-						delta = temps - P.entree_date;
-						if (delta < 3000) {
-							stop = 1;
-							deposer_piece_machine(Machine_3, P, temps);
-						}
-						if (est_vide(file_3))
-						{
-							stop = 2;
-						}
-					}
-					E.etat = 1;
-					E.DPE = temps;
-				}
+				temps_sejour_total += P.sortie_date - P.entree_date;
+				nb_pieces++;
 			}
 			else
-			{											// File 2 pleine
-				Machine_3.etat = 2; // Machine 1 bloquée
-				Machine_3.DPE = 9999;
-			}
+			{
+				//on revient au début
+				//temps = Machine_1.DPE;
+				//P = Machine_1.contenu;
 
-		}
+				//choisir machine suivante
+				choisir_machine_etape(P, P.liste_machines[P.nb_etapes]);
+
+
+				if (P.liste_machines[P.nb_etapes] == 1 && Machine_1.etat == 0)// Machine 1 libre
+				{
+					P.sortie_M1 = temps;
+					vider_machine(Machine_3);
+					deposer_piece_machine(Machine_1, P, temps);
+					if (est_vide(file_3))
+					{
+						Machine_3.etat = 0;
+						Machine_3.DPE = 9999;
+					}
+					else
+					{
+						stop = 0;
+						while (stop == 0)
+						{
+							P = retirer_piece(file_3);
+							delta = temps - P.entree_date;
+							if (delta < 3000)
+							{
+								stop = 1;
+								deposer_piece_machine(Machine_3, P, temps);
+							}
+							if (est_vide(file_3))
+							{
+								stop = 2;
+							}
+						}
+						//E.etat = 1;
+						//E.DPE = temps;
+					}
+				}
+
+				else if (est_pleine(file_1) == 0)  // File 1 n'est pas pleine
+				{
+					P.sortie_M1 = temps;
+					deposer_piece_file(file_1, P);
+					if (est_vide(file_3))
+					{
+						Machine_3.etat = 0;
+						Machine_3.DPE = 9999;
+					}
+					else {
+						stop = 0;
+						while (stop == 0)
+						{
+							P = retirer_piece(file_3);
+							delta = temps - P.entree_date;
+							if (delta < 3000) {
+								stop = 1;
+								deposer_piece_machine(Machine_3, P, temps);
+							}
+							if (est_vide(file_3))
+							{
+								stop = 2;
+							}
+						}
+						//E.etat = 1;
+						//E.DPE = temps;
+					}
+				}
+				else
+				{											// File 2 pleine
+					Machine_3.etat = 2; // Machine 1 bloquée
+					Machine_3.DPE = 9999;
+				}
+
+			}
 
 		}
 
