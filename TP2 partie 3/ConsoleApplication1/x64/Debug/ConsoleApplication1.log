@@ -1,0 +1,11 @@
+﻿  ConsoleApplication1.cpp
+  form_main.cpp
+  simul.cpp
+simul.cpp(245): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+simul.cpp(253): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+  Génération de code en cours...
+c:\users\clmesnil\documents\github\sfd-tp2\tp2 partie 3 (1)\consoleapplication1\simul.cpp(344): warning C4715: 'retirer_piece' : les chemins de contrôle ne retournent pas tous une valeur
+c:\users\clmesnil\documents\github\sfd-tp2\tp2 partie 3 (1)\consoleapplication1\simul.cpp(216): warning C4700: variable locale 'nb_pieces' non initialisée utilisée
+  AssemblyInfo.obj : /DEBUG:FASTLINK n'est pas pris en charge en présence de code managé ; redémarrage de l'édition des liens avec /DEBUG:FULL
+  ConsoleApplication1.vcxproj -> C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 3 (1)\x64\Debug\ConsoleApplication1.exe
+  ConsoleApplication1.vcxproj -> C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 3 (1)\x64\Debug\ConsoleApplication1.pdb (Partial PDB)
