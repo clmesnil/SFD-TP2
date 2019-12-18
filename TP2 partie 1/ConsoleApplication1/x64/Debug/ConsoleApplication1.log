@@ -1,1 +1,6 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(1175,5): error MSB3644: les assemblys de référence pour .NETFramework,Version=v4.5.2 sont introuvables. Pour résoudre le problème, installez le Developer Pack (kit SDK/Pack de ciblage) correspondant à cette version du framework, ou reciblez votre application. Vous pouvez télécharger plusieurs types de .NET Framework Developer Pack sur https://aka.ms/msbuild/developerpacks
+﻿  ConsoleApplication1.cpp
+  form_main.cpp
+  Génération de code en cours...
+  AssemblyInfo.obj : /DEBUG:FASTLINK n'est pas pris en charge en présence de code managé ; redémarrage de l'édition des liens avec /DEBUG:FULL
+  ConsoleApplication1.vcxproj -> C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 1\x64\Debug\ConsoleApplication1.exe
+  ConsoleApplication1.vcxproj -> C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 1\x64\Debug\ConsoleApplication1.pdb (Partial PDB)

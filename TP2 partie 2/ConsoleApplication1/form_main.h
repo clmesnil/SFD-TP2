@@ -292,6 +292,7 @@ namespace ConsoleApplication1 {
 			this->Controls->Add(this->label1);
 			this->Name = L"form_main";
 			this->Text = L"form_main";
+			this->Load += gcnew System::EventHandler(this, &form_main::form_main_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart2))->EndInit();
 			this->ResumeLayout(false);
@@ -300,9 +301,6 @@ namespace ConsoleApplication1 {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-
-
-
 
 		System::String^ s_nb_1 = textBox1->Text;
 		System::String^ s_nb_2 = textBox2->Text;
@@ -328,8 +326,9 @@ namespace ConsoleApplication1 {
 		std::istringstream(chaine3) >> duree_traitement_1;
 		std::istringstream(chaine4) >> duree_traitement_2;
 		std::istringstream(chaine5) >> duree_traitement_3;
-
+		//coucou(richTextBox1, chart1);
 		simuler(duree_simulation, duree_inter_arrivee, duree_traitement_1, duree_traitement_2, duree_traitement_3, richTextBox1, chart1);
+		
 
 		
 
@@ -370,6 +369,8 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void form_main_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 

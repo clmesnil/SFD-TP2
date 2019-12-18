@@ -267,6 +267,7 @@ namespace ConsoleApplication1 {
 			this->Controls->Add(this->label1);
 			this->Name = L"form_main";
 			this->Text = L"form_main";
+			this->Load += gcnew System::EventHandler(this, &form_main::form_main_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart2))->EndInit();
 			this->ResumeLayout(false);
@@ -339,6 +340,8 @@ private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void form_main_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 

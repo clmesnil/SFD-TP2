@@ -56,29 +56,65 @@ int generer_prochaine_etape(T_Piece& p, int etape_actuelle) //renvoie le numéro 
 
 void choisir_machine_etape(T_Piece& p, int etape) //donne à la piece le numéro de la prochaine machine qu'elle doit traverser dans l'étape donnée
 {
-	int temp;
 	if (etape == 2)  //dans l'étape 2 on choisit entre les 2 machines 2 et 3
 	{
 		if (bernoulli(proba_q))
 		{
-			p.liste_machines[p.nb_etapes + 1] = 2;
+			p.liste_machines[p.nb_etapes+1] = 2;
 		}
 		else
 		{
-			p.liste_machines[p.nb_etapes + 1] = 3;
+			p.liste_machines[p.nb_etapes+1] = 3;
 		}
 	}
 	else if (etape == 1) //si on est dans l'étape 1 on n'a pas le choix
 	{
-		p.liste_machines[p.nb_etapes + 1] = 1;
+		p.liste_machines[p.nb_etapes+1] = 1;
 	}
 }
 
+
+int calcul_DPE(int Entree, int M1, int M2, int M3)//pire fonction ever seen by chabrol => instant reported by chabrol
+{
+	int min1 = 0, min2 = 0, min = 0;
+	int retour = -1;
+	min1 = min(Entree, M1);
+	min2 = min(M2, M3);
+	min = min(min1, min2);
+	if (min == Entree)
+	{
+		retour = 1;
+	}
+	else if (min == M1)
+	{
+		retour = 2;
+	}
+	else if (min == M2)
+	{
+		retour = 3;
+	}
+	else if (min == M3)
+	{
+		retour = 4;
+	}
+	return retour;
+}
+void coucou(System::Windows::Forms::RichTextBox^ affichage,
+	System::Windows::Forms::DataVisualization::Charting::Chart^ chart1) {
+	int j = 2;
+	int i = 1;
+	System::String^ mm = transformer_int_string(i);
+	System::String^ k = transformer_int_string(j);
+
+	System::String^ l = k + " " + mm;
+	affichage->Text = l;
+}
 
 void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			System::Windows::Forms::RichTextBox^ affichage,
 			System::Windows::Forms::DataVisualization::Charting::Chart^ chart1)
 {
+
 	int stop, delta;
 	int nb_pieces;
 	int nb_perdus = 0; //jamais incrémenté
@@ -112,24 +148,15 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 	S.nb = 0;
 	E.DPE = 0;
 	E.DIA = duree_inter_arrivee;
-	
+
 	while (temps < duree_max) 
 	{
-		if (temps > 15) 
-		{
-			int u = 0;
-		}
-		if ((Machine_1.DPE <= E.DPE) && (Machine_1.DPE < Machine_2.DPE))
-			res = 2;
-		else if ((Machine_2.DPE <= Machine_1.DPE) && (Machine_2.DPE <= E.DPE))
-			res = 3;
-		else if (Machine_3.DPE <= E.DPE)
-		{
-			res = 4;
-		} 
-		else
-			res = 1;
 
+		std::cout << std::endl << std::endl << "temps = " << temps<<std::endl;
+		res = calcul_DPE(E.DPE, Machine_1.DPE, Machine_2.DPE, Machine_3.DPE);
+		std::cout << "E.DPE = " << E.DPE << " / M1.DPE = " << Machine_1.DPE << " / M2.DPE = " << Machine_2.DPE << " / M3.DPE = " << Machine_3.DPE << std::endl;
+		std::cout << "res = " << res << std::endl;
+		
 		if (res == 1)
 		{										// l'entrée avait la date la plus petite
 			temps = E.DPE; //
@@ -154,16 +181,22 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 		}
 		
 		else if (res == 2)						// Machine 1 avec DPE la plus faible
-		{								
+		{					
+			etape = 1;
 			temps = Machine_1.DPE;
 			P = Machine_1.contenu;
-			//choisir machine suivante
-			if (generer_prochaine_etape(P, P.liste_machines[P.nb_etapes]) == 2) 
-			{
-				P.nb_etapes++;
-				choisir_machine_etape(P, P.liste_machines[P.nb_etapes]);
-			}
 
+			std::cout << "res 2 ==== etape : " << etape << std::endl;
+			etape = generer_prochaine_etape(P, etape);
+			//choisir machine suivante
+			if (etape == 2) 
+			{
+				choisir_machine_etape(P, etape);
+				P.nb_etapes++;
+			}
+			
+			//coucou(affichage, chart1);
+			//coucou(affichage, chart1);
 			if (P.liste_machines[P.nb_etapes] == 2 && Machine_2.etat == 0)// Machine 2 libre
 			{ 
 				P.sortie_M1 = temps;
@@ -181,7 +214,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					{
 						P = retirer_piece(file_1);
 						delta = temps - P.entree_date;
-						if (delta < 3000) 
+						if (true) 
 						{
 							stop = 1;
 							deposer_piece_machine(Machine_1, P, temps);
@@ -191,8 +224,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 							stop = 2;
 						}
 					}
-					E.etat = 1;
-					E.DPE = temps;
+					//E.etat = 1;
+					//E.DPE = temps;
 				}
 			}
 			else if (est_pleine(file_2) == 0)
@@ -210,7 +243,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					{
 						P = retirer_piece(file_1);
 						delta = temps - P.entree_date;
-						if (delta < 3000) {
+						if (true) {
 							stop = 1;
 							deposer_piece_machine(Machine_1, P, temps);
 						}
@@ -219,8 +252,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 							stop = 2;
 						}
 					}
-					E.etat = 1;
-					E.DPE = temps;
+					//E.etat = 1;
+					//E.DPE = temps;
 				}	
 			}
 			else 
@@ -246,7 +279,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					{
 						P = retirer_piece(file_1);
 						delta = temps - P.entree_date;
-						if (delta < 3000)
+						if (true)
 						{
 							stop = 1;
 							deposer_piece_machine(Machine_1, P, temps);
@@ -256,8 +289,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 							stop = 2;
 						}
 					}
-					E.etat = 1;
-					E.DPE = temps;
+					//E.etat = 1;
+					//E.DPE = temps;
 				}
 			}
 			else if (est_pleine(file_3) == 0)
@@ -275,7 +308,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					{
 						P = retirer_piece(file_1);
 						delta = temps - P.entree_date;
-						if (delta < 3000) {
+						if (true) {
 							stop = 1;
 							deposer_piece_machine(Machine_1, P, temps);
 						}
@@ -284,8 +317,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 							stop = 2;
 						}
 					}
-					E.etat = 1;
-					E.DPE = temps;
+					//E.etat = 1;
+					//E.DPE = temps;
 				}
 			}
 			else
@@ -301,7 +334,9 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			temps = Machine_2.DPE;
 			P = Machine_2.contenu;
 
-			etape = generer_prochaine_etape(P, P.liste_machines[P.nb_etapes]);
+			std::cout << "res 3 ==== etape : " << etape << std::endl;
+			etape = generer_prochaine_etape(P, etape);
+			std::cout << "res 3 ==== etape : " << etape << std::endl;
 			P.nb_etapes++;
 			if (etape == 0)
 			{
@@ -328,10 +363,10 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			{
 				//on revient au début
 
-				temps = Machine_1.DPE;
+				//temps = Machine_1.DPE;
 				//P = Machine_1.contenu;
 				//choisir machine suivante
-				choisir_machine_etape(P, P.liste_machines[P.nb_etapes]);
+				choisir_machine_etape(P, etape);
 				
 
 				if (P.liste_machines[P.nb_etapes] == 1 && Machine_1.etat == 0)// Machine 1 libre
@@ -351,7 +386,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 						{
 							P = retirer_piece(file_2);
 							delta = temps - P.entree_date;
-							if (delta < 3000)
+							if (true)
 							{
 								stop = 1;
 								deposer_piece_machine(Machine_2, P, temps);
@@ -381,7 +416,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 						{
 							P = retirer_piece(file_2);
 							delta = temps - P.entree_date;
-							if (delta < 3000) {
+							if (true) {
 								stop = 1;
 								deposer_piece_machine(Machine_2, P, temps);
 							}
@@ -411,10 +446,13 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			temps = Machine_3.DPE;
 			P = Machine_3.contenu;
 
-			etape = generer_prochaine_etape(P, P.liste_machines[P.nb_etapes]);
+			std::cout << "res 4 ==== etape : " << etape << std::endl;
+			etape = generer_prochaine_etape(P, etape);
+			std::cout <<"res 4 ==== etape : "<< etape << std::endl;
 			P.nb_etapes++;
 			if (etape == 0)
 			{
+				std::cout << "etape 0" << std::endl;
 				//on se casse tardplus
 				deposer_piece_sortie(S, P, affichage, temps);
 				if (est_vide(file_3))
@@ -441,7 +479,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				//P = Machine_1.contenu;
 
 				//choisir machine suivante
-				choisir_machine_etape(P, P.liste_machines[P.nb_etapes]);
+				choisir_machine_etape(P, etape);
 
 
 				if (P.liste_machines[P.nb_etapes] == 1 && Machine_1.etat == 0)// Machine 1 libre
@@ -461,7 +499,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 						{
 							P = retirer_piece(file_3);
 							delta = temps - P.entree_date;
-							if (delta < 3000)
+							if (true)
 							{
 								stop = 1;
 								deposer_piece_machine(Machine_3, P, temps);
@@ -491,7 +529,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 						{
 							P = retirer_piece(file_3);
 							delta = temps - P.entree_date;
-							if (delta < 3000) {
+							if (true) {
 								stop = 1;
 								deposer_piece_machine(Machine_3, P, temps);
 							}
@@ -513,17 +551,19 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			}
 
 		}
-
+	
+		//std::cout << temps << std::endl;
 
 	}
 
+	std::cout << " C FINI " << std::endl;
 
-	//affichage->Refresh();
-	
-	moyenne_temps_sejour = temps_sejour_total / nb_pieces;
-	System::String^ moy = "Moyenne du temps de séjour: " + transformer_int_string(moyenne_temps_sejour);
-	affichage->AppendText(moy);
 	affichage->Refresh();
+	
+	//moyenne_temps_sejour = temps_sejour_total / nb_pieces +1;
+	//System::String^ moy = "Moyenne du temps de séjour: " + transformer_int_string(moyenne_temps_sejour);
+	//affichage->AppendText(moy);
+	//affichage->Refresh();
 
 	/*
 	int j = 2;
@@ -615,11 +655,11 @@ void deposer_piece_sortie(T_Sortie & S, T_Piece & P, System::Windows::Forms::Ric
 	System::String^ a = transformer_int_string(P.identifiant);
 	System::String^ b = transformer_int_string(P.entree_date);
 	System::String^ c = transformer_int_string(P.sortie_date);
-	System::String^ e = transformer_int_string(P.sortie_M1);
-	System::String^ d = a + " \t " + b + " \t " + e + " \t " + c + "\n";
+	//System::String^ e = transformer_int_string(P.sortie_M1);
+	System::String^ d = a + " \t " + b + " \t " + c + "\n";
 
 	affichage->AppendText(d);
-
+	std::cout << "cc mdr" << std::endl;
 }
 
 

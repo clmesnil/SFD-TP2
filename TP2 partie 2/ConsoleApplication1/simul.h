@@ -28,7 +28,7 @@ typedef struct T_Piece {
 	int identifiant;
 	int sortie_M1 = -1;
 	int liste_machines[MAX_ETAPES] = { 0 }; //liste des machines traversées par la pièces
-	int nb_etapes;
+	int nb_etapes = 0;
 }T_Piece;
 
 typedef struct T_File {
@@ -77,6 +77,7 @@ void simuler(int duree_max, int DIA, int DT1, int DT2, int DT3, System::Windows:
 int est_vide(T_File file);
 int est_pleine(T_File file);
 void initialiser_machine(T_Machine& Machine, int DT);
-
+void coucou(System::Windows::Forms::RichTextBox^ affichage,
+	System::Windows::Forms::DataVisualization::Charting::Chart^ chart1);
 
 #endif
