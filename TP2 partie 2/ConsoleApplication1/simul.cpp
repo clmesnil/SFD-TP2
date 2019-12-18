@@ -224,8 +224,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 							stop = 2;
 						}
 					}
-					//E.etat = 1;
-					//E.DPE = temps;
+					E.etat = 1;
+					E.DPE = temps;
 				}
 			}
 			else if (est_pleine(file_2) == 0)
@@ -252,8 +252,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 							stop = 2;
 						}
 					}
-					//E.etat = 1;
-					//E.DPE = temps;
+					E.etat = 1;
+					E.DPE = temps;
 				}	
 			}
 			else 
