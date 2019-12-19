@@ -5,6 +5,7 @@
 #include <msclr\marshal_cppstd.h>
 #include <sstream>
 #include <time.h>
+#include <iostream>
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -77,7 +78,6 @@ void simuler(int duree_max, int DIA, int DT1, int DT2, int DT3, System::Windows:
 int est_vide(T_File file);
 int est_pleine(T_File file);
 void initialiser_machine(T_Machine& Machine, int DT);
-void coucou(System::Windows::Forms::RichTextBox^ affichage,
-	System::Windows::Forms::DataVisualization::Charting::Chart^ chart1);
+
 
 #endif

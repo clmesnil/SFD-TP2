@@ -108,7 +108,8 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 			gerer_entree(E1, temps);//
 			P = E1.contenu;//
 
-			if (Machine_1.etat == 0) {
+			if (Machine_1.etat == 0) 
+			{
 				deposer_piece_machine(Machine_1, P, temps);
 			}
 			else if (est_pleine(file_1))

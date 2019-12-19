@@ -1,8 +1,5 @@
-   #include "stdafx.h"
-#include <iostream>
-#include <sstream>
-#include"simul.h"
-#include <msclr\marshal_cppstd.h>
+#include "stdafx.h"
+#include "simul.h"
 
 using namespace msclr::interop;
 
@@ -99,16 +96,8 @@ int calcul_DPE(int Entree, int M1, int M2, int M3)//pire fonction ever seen by c
 	}
 	return retour;
 }
-void coucou(System::Windows::Forms::RichTextBox^ affichage,
-	System::Windows::Forms::DataVisualization::Charting::Chart^ chart1) {
-	int j = 2;
-	int i = 1;
-	System::String^ mm = transformer_int_string(i);
-	System::String^ k = transformer_int_string(j);
 
-	System::String^ l = k + " " + mm;
-	affichage->Text = l;
-}
+
 
 void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			System::Windows::Forms::RichTextBox^ affichage,
@@ -195,8 +184,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				P.nb_etapes++;
 			}
 			
-			//coucou(affichage, chart1);
-			//coucou(affichage, chart1);
+
 			if (P.liste_machines[P.nb_etapes] == 2 && Machine_2.etat == 0)// Machine 2 libre
 			{ 
 				P.sortie_M1 = temps;
@@ -228,8 +216,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					E.DPE = temps;
 				}
 			}
-			else if (est_pleine(file_2) == 0)
-			{				// File 2 n'est pas pleine
+			else if (est_pleine(file_2) == 0)  // File 2 n'est pas pleine
+			{				
 				P.sortie_M1 = temps;
 				deposer_piece_file(file_2, P);
 				if (est_vide(file_1)) 
@@ -243,7 +231,9 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					{
 						P = retirer_piece(file_1);
 						delta = temps - P.entree_date;
-						if (true) {
+						
+						if (true) 
+						{
 							stop = 1;
 							deposer_piece_machine(Machine_1, P, temps);
 						}
@@ -262,7 +252,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				Machine_1.DPE = 9999;
 			}
 
-			if (P.liste_machines[P.nb_etapes] == 3 && Machine_3.etat == 0)// Machine 3 libre
+			if (P.liste_machines[P.nb_etapes] == 3 && Machine_3.etat == 0) // Machine 3 libre
 			{
 				P.sortie_M1 = temps;
 				vider_machine(Machine_1);
@@ -321,15 +311,15 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					//E.DPE = temps;
 				}
 			}
-			else
-			{											// File 2 pleine
+			else                           // File 2 pleine
+			{											
 				Machine_1.etat = 2; // Machine 1 bloquée
 				Machine_1.DPE = 9999;
 			}
 
 		}
 
-		else if (res == 3)						// la machine M2 avec la date la plus petite
+		else if (res == 3)						// la machine M2 avec la dpe la plus petite
 		{ 
 			temps = Machine_2.DPE;
 			P = Machine_2.contenu;
@@ -659,7 +649,6 @@ void deposer_piece_sortie(T_Sortie & S, T_Piece & P, System::Windows::Forms::Ric
 	System::String^ d = a + " \t " + b + " \t " + c + "\n";
 
 	affichage->AppendText(d);
-	std::cout << "cc mdr" << std::endl;
 }
 
 
