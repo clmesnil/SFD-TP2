@@ -32,7 +32,7 @@ typedef struct T_File {
 }T_File;
 
 typedef struct T_Machine {
-	int etat; // 0 = machine vide , 1 = machine non vide, 2 = bloquée
+	int etat; // 0 = machine vide , 1 = occupée, 2 = bloquée/en attente
 	int duree_traitement;
 	T_Piece contenu;
 	int DPE; // Date prochain événement
