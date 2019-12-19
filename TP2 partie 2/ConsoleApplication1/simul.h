@@ -32,7 +32,7 @@ typedef struct T_Piece {
 }T_Piece;
 
 typedef struct T_File {
-	T_Piece L[11];
+	T_Piece L[9999];
 	int debut;
 	int fin;
 }T_File;
