@@ -1,9 +1,6 @@
-﻿  simul.cpp
-C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(323,11): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(331,12): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(60,12): warning C4101: 'delta' : variable locale non référencée
-C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(60,6): warning C4101: 'stop' : variable locale non référencée
-C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(422): warning C4715: 'retirer_piece' : les chemins de contrôle ne retournent pas tous une valeur
-C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(277): warning C4700: variable locale 'nb_pieces' non initialisée utilisée
+﻿  ConsoleApplication1.cpp
+  form_main.cpp
+  Génération de code en cours...
+  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
   AssemblyInfo.obj : module MSIL détecté ; liens incrémentiels désactivés pour MSIL ; édition de liens complète en cours
   ConsoleApplication1.vcxproj -> C:\Users\clmesnil\Documents\GitHub\SFD-TP2\TP2 partie 3\x64\Debug\ConsoleApplication1.exe
