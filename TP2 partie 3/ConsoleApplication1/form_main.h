@@ -331,8 +331,8 @@ namespace ConsoleApplication1 {
 		System::String^ s_nb_2 = textBox2->Text;
 		System::String^ s_nb_3 = textBox3->Text;
 		System::String^ s_nb_4 = textBox4->Text;
-		System::String^ s_nb_5 = textBox4->Text;
-		System::String^ s_nb_6 = textBox4->Text;
+		System::String^ s_nb_5 = textBox5->Text;
+		System::String^ s_nb_6 = textBox6->Text;
 
 		msclr::interop::marshal_context context;
 		std::string chaine1 = context.marshal_as<std::string>(s_nb_1);
@@ -351,9 +351,9 @@ namespace ConsoleApplication1 {
 		int duree_traitement_2 = -1;
 		std::istringstream(chaine1) >> duree_simulation;
 		std::istringstream(chaine2) >> duree_inter_arrivee1;
-		std::istringstream(chaine3) >> duree_inter_arrivee2;
-		std::istringstream(chaine4) >> duree_traitement_1;
-		std::istringstream(chaine5) >> duree_traitement_2;
+		std::istringstream(chaine5) >> duree_inter_arrivee2;
+		std::istringstream(chaine3) >> duree_traitement_1;
+		std::istringstream(chaine4) >> duree_traitement_2;
 		std::istringstream(chaine6) >> duree_assemblage;
 
 		simuler(duree_simulation, duree_inter_arrivee1, duree_inter_arrivee2, duree_traitement_1, duree_traitement_2, duree_assemblage, richTextBox1, chart1);

@@ -20,29 +20,29 @@ void gerer_entree(T_Entree& E, int date)
 
 int calcul_DPE(int Entree1, int Entree2, int M1, int M2, int Assemblage)//pire fonction ever seen by chabrol => instant reported by chabrol
 {
-	int min1 = 0, min2 = 0, min3 = 0, min = 0;
+	int min1 = 0, min2 = 0, min3 = 0, minimum = 0;
 	int retour = -1;
 	min1 = min(Entree1, Entree2);
 	min2 = min(M1, M2);
 	min3 = min(Assemblage, min1);
-	min = min(min3, min2);
-	if (min == Entree1)
+	minimum = min(min3, min2);
+	if (minimum == Entree1)
 	{
 		retour = 1;
 	}
-	else if (min == Entree2)
+	else if (minimum == Entree2)
 	{
 		retour = 2;
 	}
-	else if (min == M1)
+	else if (minimum == M1)
 	{
 		retour = 3;
 	}
-	else if (min == M2)
+	else if (minimum == M2)
 	{
 		retour = 4;
 	}
-	else if (min == Assemblage)
+	else if (minimum == Assemblage)
 	{
 		retour = 5;
 	}
@@ -81,13 +81,19 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 	E2.DPE = 0;
 	E1.DIA = duree_inter_arrivee1;
 	E2.DIA = duree_inter_arrivee2;
-	
+	std::cout << "DIA1 = " << duree_inter_arrivee1 << "\tDIA2 = " << duree_inter_arrivee2 << "\tDT1 = " << DT1 << "\tDT2 = " << DT2 << "\tDA = " << DTA << std::endl<<std::endl;
 	while (temps < duree_max) {
+		
+
+
+
 
 		res = calcul_DPE(E1.DPE, E2.DPE, Machine_1.DPE, Machine_2.DPE, Assemblage.DPE);
 
 		if (res == 1) {										// l'entrée 1 avait la date la plus petite
+			std::cout << "res = 1" << std::endl;
 			temps = E1.DPE; //
+			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			gerer_entree(E1, temps);//
 			P = E1.contenu;//
 
@@ -110,7 +116,9 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 
 
 		else if (res == 2) {									// l'entrée 2 avait la date la plus petite
+			std::cout << "res = 2" << std::endl;
 			temps = E2.DPE; //
+			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			gerer_entree(E2, temps);//
 			P = E2.contenu;//
 
@@ -133,32 +141,27 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 
 
 		else if (res == 3) {								// Machine 1 avec DPE la plus faible
+			std::cout << "res = 3" << std::endl;
 			temps = Machine_1.DPE;
+			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			P = Machine_1.contenu;
 			if ((Machine_2.etat == 2) && (Assemblage.etat == 0)) //Assemblage libre et autre pièce rdy
 			{ 
 				P.sortie_M1 = temps;
 				vider_machine(Machine_1);
+				vider_machine(Machine_2);
 				deposer_piece_machine(Assemblage, P, temps);
 				if (est_vide(file_1)) {
 					Machine_1.etat = 0;
 					Machine_1.DPE = 9999;
 				}
 				else {
-					stop = 0;
-					while (stop == 0) {
-						P = retirer_piece(file_1);
-						delta = temps - P.entree_date;
-						if (true) {
-							stop = 1;
-							deposer_piece_machine(Machine_1, P, temps);
-						}
-						if (est_vide(file_1)) {
-							stop = 2;
-						}
+					if (est_pleine(file_1)) {
+						E1.etat = 1;
+						E1.DPE = temps;
 					}
-					E1.etat = 1;
-					E1.DPE = temps;
+					P = retirer_piece(file_1);
+					deposer_piece_machine(Machine_1, P, temps);
 				}
 			}
 
@@ -169,32 +172,28 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 		}
 
 		else if (res == 4) {								// Machine 2 avec DPE la plus faible
+			std::cout << "res = 4" << std::endl;
 			temps = Machine_2.DPE;
+			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			P = Machine_2.contenu;
 			if ((Machine_1.etat == 2) && (Assemblage.etat == 0)) //Assemblage libre et autre pièce rdy
 			{
 				P.sortie_M1 = temps;
 				vider_machine(Machine_2);
+				vider_machine(Machine_1);
 				deposer_piece_machine(Assemblage, P, temps);
-				if (est_vide(file_1)) {
+
+				if (est_vide(file_2)) {
 					Machine_2.etat = 0;
 					Machine_2.DPE = 9999;
 				}
 				else {
-					stop = 0;
-					while (stop == 0) {
-						P = retirer_piece(file_2);
-						delta = temps - P.entree_date;
-						if (true) {
-							stop = 1;
-							deposer_piece_machine(Machine_2, P, temps);
-						}
-						if (est_vide(file_2)) {
-							stop = 2;
-						}
+					if (est_pleine(file_2)) {
+						E2.etat = 1;
+						E2.DPE = temps;
 					}
-					E2.etat = 1;
-					E2.DPE = temps;
+					P = retirer_piece(file_2);
+					deposer_piece_machine(Machine_2, P, temps);
 				}
 			}
 
@@ -206,7 +205,9 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 
 
 		else if (res == 5) {					// la machine M2 avec la date la plus petite
+		std::cout << "res = 5" << std::endl;
 			temps = Assemblage.DPE;
+			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			P = Assemblage.contenu;
 			deposer_piece_sortie(S, P, affichage, temps);
 
@@ -216,6 +217,7 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 			nb_pieces++;
 		}
 	}
+	std::cout << "C FINI" << std::endl;
 
 
 	//affichage->Refresh();
