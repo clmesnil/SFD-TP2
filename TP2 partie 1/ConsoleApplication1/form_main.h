@@ -56,6 +56,8 @@ namespace ConsoleApplication1 {
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart2;
 	private: System::Windows::Forms::TextBox^ textBox4;
 	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
 
 
 
@@ -79,6 +81,7 @@ namespace ConsoleApplication1 {
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(form_main::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -93,8 +96,10 @@ namespace ConsoleApplication1 {
 			this->chart2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -246,11 +251,22 @@ namespace ConsoleApplication1 {
 			this->label4->Text = L"Duree_de_traitement 2";
 			this->label4->Click += gcnew System::EventHandler(this, &form_main::label4_Click);
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(2, 72);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(575, 155);
+			this->pictureBox1->TabIndex = 16;
+			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &form_main::pictureBox1_Click_1);
+			// 
 			// form_main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1208, 701);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->chart2);
@@ -270,6 +286,7 @@ namespace ConsoleApplication1 {
 			this->Load += gcnew System::EventHandler(this, &form_main::form_main_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -342,6 +359,8 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void form_main_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void pictureBox1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 
