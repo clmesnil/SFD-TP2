@@ -31,15 +31,15 @@ typedef struct T_File {
 }T_File;
 
 typedef struct T_Machine {
-	int etat; // 0 = machine vide , 1 = machine non vide, 2 = bloquée
+	int etat;							// 0 = machine vide , 1 = machine non vide, 2 = bloquée
 	int duree_traitement;
 	T_Piece contenu;
-	int DPE; // Date prochain événement
+	int DPE;							// Date prochain événement
 }T_Machine;
 
 typedef struct T_Entree {
-	int DIA; // Date inter-arrivée
-	int DPE; // Date prochain événement
+	int DIA;							// Date inter-arrivée
+	int DPE;							// Date prochain événement
 	int numero_P_courante;
 	T_Piece contenu;
 	int etat;
