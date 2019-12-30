@@ -51,12 +51,14 @@ namespace ConsoleApplication1 {
 	private: System::Windows::Forms::RichTextBox^  richTextBox1;
 
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart1;
-	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::Button^  button3;
+
+
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart2;
 	private: System::Windows::Forms::TextBox^ textBox4;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::TextBox^ textBox5;
+	private: System::Windows::Forms::TextBox^ textBox6;
 
 
 
@@ -75,12 +77,12 @@ namespace ConsoleApplication1 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea3 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea4 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(form_main::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -91,12 +93,12 @@ namespace ConsoleApplication1 {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->chart2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -105,36 +107,40 @@ namespace ConsoleApplication1 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(595, 43);
+			this->label1->Location = System::Drawing::Point(793, 53);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(111, 13);
+			this->label1->Size = System::Drawing::Size(149, 17);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Duree de la simulation";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(595, 72);
+			this->label2->Location = System::Drawing::Point(793, 89);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(91, 13);
+			this->label2->Size = System::Drawing::Size(123, 17);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Duree interarrivee";
 			this->label2->Click += gcnew System::EventHandler(this, &form_main::label2_Click);
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(715, 43);
+			this->textBox1->Location = System::Drawing::Point(953, 53);
+			this->textBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
+			this->textBox1->Size = System::Drawing::Size(132, 22);
 			this->textBox1->TabIndex = 2;
 			this->textBox1->Text = L"1000";
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &form_main::textBox1_TextChanged);
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(715, 69);
+			this->textBox2->Location = System::Drawing::Point(953, 85);
+			this->textBox2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
+			this->textBox2->Size = System::Drawing::Size(132, 22);
 			this->textBox2->TabIndex = 3;
 			this->textBox2->Text = L"2";
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &form_main::textBox2_TextChanged);
@@ -142,26 +148,29 @@ namespace ConsoleApplication1 {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(595, 98);
+			this->label3->Location = System::Drawing::Point(793, 121);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(115, 13);
+			this->label3->Size = System::Drawing::Size(154, 17);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Duree_de_traitement 1";
 			this->label3->Click += gcnew System::EventHandler(this, &form_main::label3_Click);
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(715, 95);
+			this->textBox3->Location = System::Drawing::Point(953, 117);
+			this->textBox3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(100, 20);
+			this->textBox3->Size = System::Drawing::Size(132, 22);
 			this->textBox3->TabIndex = 5;
 			this->textBox3->Text = L"10";
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(598, 150);
+			this->button1->Location = System::Drawing::Point(797, 185);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(217, 109);
+			this->button1->Size = System::Drawing::Size(289, 134);
 			this->button1->TabIndex = 6;
 			this->button1->Text = L"SIMULER";
 			this->button1->UseVisualStyleBackColor = true;
@@ -169,84 +178,70 @@ namespace ConsoleApplication1 {
 			// 
 			// richTextBox1
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(842, 25);
+			this->richTextBox1->Location = System::Drawing::Point(1123, 31);
+			this->richTextBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(326, 234);
+			this->richTextBox1->Size = System::Drawing::Size(433, 287);
 			this->richTextBox1->TabIndex = 7;
 			this->richTextBox1->Text = L"";
+			this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &form_main::richTextBox1_TextChanged);
 			// 
 			// chart1
 			// 
-			chartArea1->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea1);
+			chartArea3->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea3);
 			this->chart1->Cursor = System::Windows::Forms::Cursors::Cross;
-			legend1->Name = L"Legend1";
-			this->chart1->Legends->Add(legend1);
-			this->chart1->Location = System::Drawing::Point(31, 276);
+			legend3->Name = L"Legend1";
+			this->chart1->Legends->Add(legend3);
+			this->chart1->Location = System::Drawing::Point(41, 340);
+			this->chart1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->chart1->Name = L"chart1";
-			series1->ChartArea = L"ChartArea1";
-			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Spline;
-			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
-			this->chart1->Series->Add(series1);
-			this->chart1->Size = System::Drawing::Size(561, 362);
+			series3->ChartArea = L"ChartArea1";
+			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Spline;
+			series3->Legend = L"Legend1";
+			series3->Name = L"Series1";
+			this->chart1->Series->Add(series3);
+			this->chart1->Size = System::Drawing::Size(748, 446);
 			this->chart1->TabIndex = 9;
-			this->chart1->Text = L"chart1";
+			this->chart1->Text = L"Graphique 1 : pièces perdues";
 			this->chart1->Click += gcnew System::EventHandler(this, &form_main::chart1_Click);
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(56, 657);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(506, 23);
-			this->button2->TabIndex = 10;
-			this->button2->Text = L"button2";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &form_main::button2_Click);
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(638, 657);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(506, 23);
-			this->button3->TabIndex = 12;
-			this->button3->Text = L"button3";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &form_main::button3_Click);
 			// 
 			// chart2
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->chart2->ChartAreas->Add(chartArea2);
+			chartArea4->Name = L"ChartArea1";
+			this->chart2->ChartAreas->Add(chartArea4);
 			this->chart2->Cursor = System::Windows::Forms::Cursors::Cross;
-			legend2->Name = L"Legend1";
-			this->chart2->Legends->Add(legend2);
-			this->chart2->Location = System::Drawing::Point(607, 276);
+			legend4->Name = L"Legend1";
+			this->chart2->Legends->Add(legend4);
+			this->chart2->Location = System::Drawing::Point(809, 340);
+			this->chart2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->chart2->Name = L"chart2";
-			series2->ChartArea = L"ChartArea1";
-			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Spline;
-			series2->Legend = L"Legend1";
-			series2->Name = L"Series1";
-			this->chart2->Series->Add(series2);
-			this->chart2->Size = System::Drawing::Size(561, 362);
+			series4->ChartArea = L"ChartArea1";
+			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Spline;
+			series4->Legend = L"Legend1";
+			series4->Name = L"Series1";
+			this->chart2->Series->Add(series4);
+			this->chart2->Size = System::Drawing::Size(748, 446);
 			this->chart2->TabIndex = 13;
 			this->chart2->Text = L"chart2";
 			this->chart2->Click += gcnew System::EventHandler(this, &form_main::chart2_Click);
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(715, 121);
+			this->textBox4->Location = System::Drawing::Point(953, 149);
+			this->textBox4->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(100, 20);
+			this->textBox4->Size = System::Drawing::Size(132, 22);
 			this->textBox4->TabIndex = 14;
 			this->textBox4->Text = L"6";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(595, 124);
+			this->label4->Location = System::Drawing::Point(793, 153);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(115, 13);
+			this->label4->Size = System::Drawing::Size(154, 17);
 			this->label4->TabIndex = 15;
 			this->label4->Text = L"Duree_de_traitement 2";
 			this->label4->Click += gcnew System::EventHandler(this, &form_main::label4_Click);
@@ -254,24 +249,42 @@ namespace ConsoleApplication1 {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(12, 43);
+			this->pictureBox1->Location = System::Drawing::Point(16, 53);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(564, 155);
+			this->pictureBox1->Size = System::Drawing::Size(752, 191);
 			this->pictureBox1->TabIndex = 16;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &form_main::pictureBox1_Click_1);
 			// 
+			// textBox5
+			// 
+			this->textBox5->Location = System::Drawing::Point(953, 803);
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(392, 22);
+			this->textBox5->TabIndex = 17;
+			this->textBox5->Text = L"temps d\'attente des pièces au cours du temps";
+			// 
+			// textBox6
+			// 
+			this->textBox6->Location = System::Drawing::Point(184, 803);
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->Size = System::Drawing::Size(392, 22);
+			this->textBox6->TabIndex = 18;
+			this->textBox6->Text = L"nombre de pièces perdues au cours du temps";
+			this->textBox6->TextChanged += gcnew System::EventHandler(this, &form_main::textBox6_TextChanged);
+			// 
 			// form_main
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1208, 701);
+			this->ClientSize = System::Drawing::Size(1633, 863);
+			this->Controls->Add(this->textBox6);
+			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->chart2);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
 			this->Controls->Add(this->chart1);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->button1);
@@ -281,6 +294,7 @@ namespace ConsoleApplication1 {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"form_main";
 			this->Text = L"form_main";
 			this->Load += gcnew System::EventHandler(this, &form_main::form_main_Load);
@@ -318,7 +332,7 @@ namespace ConsoleApplication1 {
 		std::istringstream(chaine3) >> duree_traitement_1;
 		std::istringstream(chaine4) >> duree_traitement_2;
 
-		simuler(duree_simulation, duree_inter_arrivee, duree_traitement_1, duree_traitement_2, richTextBox1, chart1);
+		simuler(duree_simulation, duree_inter_arrivee, duree_traitement_1, duree_traitement_2, richTextBox1, chart1, chart2);
 
 		
 
@@ -339,13 +353,13 @@ private: System::Void chart2_Click(System::Object^  sender, System::EventArgs^  
 }
 
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	float x = -10;
+	/*float x = -10;
 	while (x < 10)
 	{
 		float y = exp(x) - x*x;
 		chart2->Series[0]->Points->AddXY(x, y);
 		x = x + 1;
-	}
+	}*/
 }
 
 private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -361,6 +375,10 @@ private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void form_main_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void pictureBox1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox6_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 

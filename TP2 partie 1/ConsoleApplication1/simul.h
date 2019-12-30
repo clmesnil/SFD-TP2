@@ -61,7 +61,7 @@ void deposer_piece_sortie(T_Sortie& S, T_Piece& P, System::Windows::Forms::RichT
 void initialiser_file(T_File &file);
 void vider_machine(T_Machine & M);
 
-void simuler(int duree_max, int DIA, int DT1, int DT2, System::Windows::Forms::RichTextBox^ affichage, System::Windows::Forms::DataVisualization::Charting::Chart^ chart1);
+void simuler(int duree_max, int DIA, int DT1, int DT2, System::Windows::Forms::RichTextBox^ affichage, System::Windows::Forms::DataVisualization::Charting::Chart^ chart1, System::Windows::Forms::DataVisualization::Charting::Chart^ chart2);
 
 int est_vide(T_File file);
 int est_pleine(T_File file);

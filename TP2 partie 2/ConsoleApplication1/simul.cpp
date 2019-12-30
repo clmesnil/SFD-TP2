@@ -101,7 +101,8 @@ int calcul_DPE(int Entree, int M1, int M2, int M3)//pire fonction ever seen by c
 
 void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			System::Windows::Forms::RichTextBox^ affichage,
-			System::Windows::Forms::DataVisualization::Charting::Chart^ chart1)
+			System::Windows::Forms::DataVisualization::Charting::Chart^ chart1,
+			System::Windows::Forms::DataVisualization::Charting::Chart^ chart2)
 {
 
 	int stop, delta;
@@ -573,7 +574,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 	while (x < nb_pieces)
 	{
 		float y = S.L[x].entree_date;
-		chart1->Series[0]->Points->AddXY(y, x);
+		chart1->Series[0]->Points->AddXY(x, y);
 		x = x + 1;
 	}
 
@@ -581,7 +582,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 	while (x2 < nb_pieces)
 	{
 		float y2 = S.L[x2].sortie_date;
-		chart1->Series[0]->Points->AddXY(y2,x2);
+		chart2->Series[0]->Points->AddXY(x2, y2);
 		x2 = x2 + 1;
 	}
 

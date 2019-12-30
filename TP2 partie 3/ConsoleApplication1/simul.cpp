@@ -21,7 +21,7 @@ void gerer_entree(T_Entree& E, int date)
 int calcul_DPE(int Entree1, int Entree2, int M1, int M2, int Assemblage)//pire fonction ever seen by chabrol => instant reported by chabrol
 {
 
-	std::cout << "Entree1 = " << Entree1 << "\tEntree2 = " << Entree2 << "\tM1 = " << M1 << "\tM2 = " << M2 << "\tAssemblage = " << Assemblage << std::endl;
+	//std::cout << "Entree1 = " << Entree1 << "\tEntree2 = " << Entree2 << "\tM1 = " << M1 << "\tM2 = " << M2 << "\tAssemblage = " << Assemblage << std::endl;
 
 	int min1 = 0, min2 = 0, min3 = 0, minimum = 0;
 	int retour = -1;
@@ -55,7 +55,8 @@ int calcul_DPE(int Entree1, int Entree2, int M1, int M2, int Assemblage)//pire f
 
 void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, int DT1, int DT2, int DTA,
 			System::Windows::Forms::RichTextBox^ affichage,
-			System::Windows::Forms::DataVisualization::Charting::Chart^ chart1)
+			System::Windows::Forms::DataVisualization::Charting::Chart^ chart1,
+			System::Windows::Forms::DataVisualization::Charting::Chart^ chart2)
 {
 	int stop, delta;
 	int nb_pieces;
@@ -90,7 +91,7 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 	E2.DPE = 0;
 	E1.DIA = duree_inter_arrivee1;
 	E2.DIA = duree_inter_arrivee2;
-	std::cout << "DIA1 = " << duree_inter_arrivee1 << "\tDIA2 = " << duree_inter_arrivee2 << "\tDT1 = " << DT1 << "\tDT2 = " << DT2 << "\tDA = " << DTA << std::endl<<std::endl;
+	//std::cout << "DIA1 = " << duree_inter_arrivee1 << "\tDIA2 = " << duree_inter_arrivee2 << "\tDT1 = " << DT1 << "\tDT2 = " << DT2 << "\tDA = " << DTA << std::endl<<std::endl;
 	while (temps < duree_max) {
 		
 					   
@@ -102,9 +103,9 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 
 		if (res == 1)						// l'entrée 1 avait la date la plus petite
 		{										
-			std::cout << "res = 1" << std::endl;
+			//std::cout << "res = 1" << std::endl;
 			temps = E1.DPE; //
-			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
+			//std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			gerer_entree(E1, temps);//
 			P = E1.contenu;//
 
@@ -129,9 +130,9 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 
 		else if (res == 2)					// l'entrée 2 avait la date la plus petite
 		{									
-			std::cout << "res = 2" << std::endl;
+			//std::cout << "res = 2" << std::endl;
 			temps = E2.DPE; //
-			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
+			//std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			gerer_entree(E2, temps);//
 			P = E2.contenu;//
 
@@ -154,9 +155,9 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 
 
 		else if (res == 3) {								// Machine 1 avec DPE la plus faible
-			std::cout << "res = 3" << std::endl;
+			//std::cout << "res = 3" << std::endl;
 			temps = Machine_1.DPE;
-			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
+			//std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			P = Machine_1.contenu;
 			if ((Machine_2.etat == 2) && (Assemblage.etat == 0)) //Assemblage libre et autre pièce rdy
 			{ 
@@ -212,9 +213,9 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 
 
 		else if (res == 4) {								// Machine 2 avec DPE la plus faible
-			std::cout << "res = 4" << std::endl;
+			//std::cout << "res = 4" << std::endl;
 			temps = Machine_2.DPE;
-			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
+			//std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			P = Machine_2.contenu;
 			if ((Machine_1.etat == 2) && (Assemblage.etat == 0)) //Assemblage libre et autre pièce rdy
 			{
@@ -266,9 +267,10 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 
 
 		else if (res == 5) {					// la machine Assemblage avec la date la plus petite
-		std::cout << "res = 5" << std::endl;
+
+			//std::cout << "res = 5" << std::endl;
 			temps = Assemblage.DPE;
-			std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
+			//std::cout << "temps = " << temps << std::endl << std::endl << std::endl;
 			P = Assemblage.contenu;
 			deposer_piece_sortie(S, P, affichage, temps);
 
@@ -279,7 +281,7 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 
 			//remettre en service les machines qui attendaient:
 			
-			std::cout << "machine1.etat : " << Machine_1.etat << "machine2.etat : " << Machine_2.etat << std::endl;
+			//std::cout << "machine1.etat : " << Machine_1.etat << "machine2.etat : " << Machine_2.etat << std::endl;
 
 			if (Machine_1.etat == 2) //si la machine est bloquée on la déploque
 			{
@@ -294,7 +296,6 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 			}
 		}
 	}
-	std::cout << "C FINI" << std::endl;
 
 
 	//affichage->Refresh();
@@ -329,8 +330,8 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 	int x2 = 0;
 	while (x2 < nb_pieces)
 	{
-		float y2 = S.L[x2].sortie_date;
-		chart1->Series[0]->Points->AddXY(y2,x2);
+		float y2 = S.L[x2].sortie_date - S.L[x].entree_date;
+		chart2->Series[0]->Points->AddXY(x2, y2);
 		x2 = x2 + 1;
 	}
 
