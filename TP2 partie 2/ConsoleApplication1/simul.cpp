@@ -18,9 +18,9 @@ void gerer_entree(T_Entree& E, int date)
 
 int bernoulli(float p)
 {
-	srand(time(NULL));
-	int retour = 0, max_nb = 100000;
-	float nb = (rand() % max_nb) / max_nb;
+	int retour = 0, max_nb = 1000;
+	float nb = float((rand() % max_nb)) / max_nb;
+	std::cout << "nb = " << nb << std::endl;
 	if (nb < p)
 	{
 		retour = 1;
@@ -41,10 +41,12 @@ int generer_prochaine_etape(T_Piece& p, int etape_actuelle) //renvoie le numéro 
 		if (bernoulli(proba_p))
 		{
 			proc_etape = 1;
+			std::cout << " ON RECOMMENCE " << std::endl;
 		}
 		else
 		{
 			proc_etape = 0;
+			std::cout << " ON PART " << std::endl;
 		}
 	}
 	return proc_etape;
@@ -58,15 +60,18 @@ void choisir_machine_etape(T_Piece& p, int etape) //donne à la piece le numéro d
 		if (bernoulli(proba_q))
 		{
 			p.liste_machines[p.nb_etapes+1] = 2;
+			std::cout << "C PARTI DANS M2" << std::endl;
 		}
 		else
 		{
 			p.liste_machines[p.nb_etapes+1] = 3;
+			std::cout << "C PARTI DANS M3" << std::endl;
 		}
 	}
 	else if (etape == 1) //si on est dans l'étape 1 on n'a pas le choix
 	{
 		p.liste_machines[p.nb_etapes+1] = 1;
+		std::cout << "C PARTI DANS M1" << std::endl;
 	}
 }
 
@@ -104,7 +109,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			System::Windows::Forms::DataVisualization::Charting::Chart^ chart1,
 			System::Windows::Forms::DataVisualization::Charting::Chart^ chart2)
 {
-
+	srand(time(NULL));
 	int stop, delta;
 	int nb_pieces;
 	int nb_perdus = 0; //jamais incrémenté
@@ -157,12 +162,15 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			{
 				deposer_piece_machine(Machine_1, P, temps);
 			}
+			/* n'est pas censé arriver */
+			/*
 			else if (est_pleine(file_1))
 			{
 				nb_perdus++;
 				E.etat = 2;
 				E.DPE = 9999;
 			}
+			*/
 			else // La file n'est pas pleine et M1 est occupée
 			{
 				P.entree_date = temps;
@@ -217,7 +225,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					E.DPE = temps;
 				}
 			}
-			else if (est_pleine(file_2) == 0)  // File 2 n'est pas pleine
+			else if (P.liste_machines[P.nb_etapes] == 2 && est_pleine(file_2) == 0)  // File 2 n'est pas pleine
 			{				
 				P.sortie_M1 = temps;
 				deposer_piece_file(file_2, P);
@@ -247,13 +255,13 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					E.DPE = temps;
 				}	
 			}
-			else 
+			else if (P.liste_machines[P.nb_etapes] == 2)
 			{											// File 2 pleine
 				Machine_1.etat = 2; // Machine 1 bloquée
 				Machine_1.DPE = 9999;
 			}
 
-			if (P.liste_machines[P.nb_etapes] == 3 && Machine_3.etat == 0) // Machine 3 libre
+			else if (P.liste_machines[P.nb_etapes] == 3 && Machine_3.etat == 0) // Machine 3 libre
 			{
 				P.sortie_M1 = temps;
 				vider_machine(Machine_1);
@@ -284,7 +292,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					//E.DPE = temps;
 				}
 			}
-			else if (est_pleine(file_3) == 0)
+			else if (P.liste_machines[P.nb_etapes] == 3 && est_pleine(file_3) == 0)
 			{				// File 3 n'est pas pleine
 				P.sortie_M1 = temps;
 				deposer_piece_file(file_3, P);
@@ -312,7 +320,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					//E.DPE = temps;
 				}
 			}
-			else                           // File 2 pleine
+			else if (P.liste_machines[P.nb_etapes] == 3)                           // File 2 pleine
 			{											
 				Machine_1.etat = 2; // Machine 1 bloquée
 				Machine_1.DPE = 9999;
@@ -626,7 +634,7 @@ void deposer_piece_file(T_File &file, T_Piece P)
 	if (!est_pleine(file))
 	{
 		file.L[file.fin] = P;
-		file.fin = (file.fin) % 10 + 1;
+		file.fin = (file.fin) + 1;
 	}
 }
 
@@ -646,7 +654,6 @@ void deposer_piece_sortie(T_Sortie & S, T_Piece & P, System::Windows::Forms::Ric
 	System::String^ a = transformer_int_string(P.identifiant);
 	System::String^ b = transformer_int_string(P.entree_date);
 	System::String^ c = transformer_int_string(P.sortie_date);
-	//System::String^ e = transformer_int_string(P.sortie_M1);
 	System::String^ d = a + " \t " + b + " \t " + c + "\n";
 
 	affichage->AppendText(d);
@@ -659,7 +666,7 @@ T_Piece retirer_piece(T_File & file)
 	if (!est_vide(file))
 	{
 		retour = file.L[file.debut];
-		file.debut = (file.debut) % 10 + 1;
+		file.debut = (file.debut) + 1;
 		return (retour);
 	}
 }
@@ -667,7 +674,7 @@ T_Piece retirer_piece(T_File & file)
 
 void initialiser_file(T_File & file)
 {
-	file.debut = 4;
+	file.debut = 500;
 	file.fin = 4;
 }
 

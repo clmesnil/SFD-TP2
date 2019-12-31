@@ -18,8 +18,8 @@ using namespace msclr::interop;
 
 const int MAX_ETAPES = 10;
 
-const int proba_p = 0.6;
-const int proba_q = 0.4;
+const float proba_p = 0.6;
+const float proba_q = 0.4;
 
 // Définitions des structures
 
@@ -33,7 +33,7 @@ typedef struct T_Piece {
 }T_Piece;
 
 typedef struct T_File {
-	T_Piece L[9999];
+	T_Piece L[999];
 	int debut;
 	int fin;
 }T_File;

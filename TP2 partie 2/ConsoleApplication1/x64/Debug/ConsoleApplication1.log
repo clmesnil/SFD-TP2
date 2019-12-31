@@ -1,11 +1,10 @@
 ﻿  simul.cpp
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.h(21,21): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.h(22,21): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.h(63,2): warning C4091: 'typedef ' : ignoré à gauche de 'T_gamme' quand aucune variable n'est déclarée
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(21,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(23,11): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(576,11): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(584,12): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(665): warning C4715: 'retirer_piece' : les chemins de contrôle ne retournent pas tous une valeur
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.h(21,26): warning C4305: 'initialisation' : troncation de 'double' à 'float'
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.h(22,26): warning C4305: 'initialisation' : troncation de 'double' à 'float'
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.h(63,2): warning C4091: 'typedef ' : ignoré à gauche de 'T_gamme' quand aucune variable n'est déclarée
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(112,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(584,11): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(592,12): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(673): warning C4715: 'retirer_piece' : les chemins de contrôle ne retournent pas tous une valeur
   AssemblyInfo.obj : module MSIL détecté ; liens incrémentiels désactivés pour MSIL ; édition de liens complète en cours
-  ConsoleApplication1.vcxproj -> C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 2\x64\Debug\ConsoleApplication1.exe
+  ConsoleApplication1.vcxproj -> C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\x64\Debug\ConsoleApplication1.exe
