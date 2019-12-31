@@ -3,8 +3,9 @@ C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simu
 C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.h(22,26): warning C4305: 'initialisation' : troncation de 'double' à 'float'
 C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.h(63,2): warning C4091: 'typedef ' : ignoré à gauche de 'T_gamme' quand aucune variable n'est déclarée
 C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(112,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(501,11): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(509,12): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(479,81): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(502,11): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(510,12): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
 C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(113,12): warning C4101: 'delta' : variable locale non référencée
 C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 2\ConsoleApplication1\simul.cpp(113,6): warning C4101: 'stop' : variable locale non référencée
   AssemblyInfo.obj : module MSIL détecté ; liens incrémentiels désactivés pour MSIL ; édition de liens complète en cours

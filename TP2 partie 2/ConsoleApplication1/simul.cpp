@@ -116,10 +116,9 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 	int temps = 0; // Date de simulation
 	int id_piece = 1;
 	int res = 0;
-	int temps_sejour_total = 0;
 	int moyenne_temps_sejour = 0;
 	int etape = 0;
-
+	float temps_sejour_total = 0.0, dur_moy_sortie = 0.0;
 	T_File file_1;
 	T_File file_2;
 	T_File file_3;
@@ -302,7 +301,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			if (etape == 0)
 			{
 				//on se casse tardplus
-				deposer_piece_sortie(S, P, affichage, temps);
+				deposer_piece_sortie(S, P, affichage, temps, temps_sejour_total);
 				if (est_vide(file_2))
 				{
 					vider_machine(Machine_2);
@@ -393,7 +392,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			{
 				std::cout << "etape 0" << std::endl;
 				//on se casse tardplus
-				deposer_piece_sortie(S, P, affichage, temps);
+				deposer_piece_sortie(S, P, affichage, temps, temps_sejour_total);
 				if (est_vide(file_3))
 				{
 					vider_machine(Machine_3);
@@ -474,12 +473,14 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 
 	std::cout << " C FINI " << std::endl;
 
+	dur_moy_sortie = temps_sejour_total / S.nb;
+
 	affichage->Refresh();
-	
+	System::String^ moy = "Moyenne du temps de séjour: " + transformer_int_string(dur_moy_sortie);
 	//moyenne_temps_sejour = temps_sejour_total / nb_pieces +1;
-	//System::String^ moy = "Moyenne du temps de séjour: " + transformer_int_string(moyenne_temps_sejour);
-	//affichage->AppendText(moy);
-	//affichage->Refresh();
+	
+	affichage->AppendText(moy);
+	affichage->Refresh();
 
 	/*
 	int j = 2;
@@ -563,7 +564,7 @@ void deposer_piece_machine(T_Machine & M, T_Piece P, int date_simulation)
 }
 
 void deposer_piece_sortie(T_Sortie & S, T_Piece & P, System::Windows::Forms::RichTextBox^ affichage,
-																				int date_simulation)
+																				int date_simulation, float temps_sejour_total)
 {
 	std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << std::endl;
 	P.sortie_date = date_simulation;
@@ -573,6 +574,12 @@ void deposer_piece_sortie(T_Sortie & S, T_Piece & P, System::Windows::Forms::Ric
 	System::String^ b = transformer_int_string(P.entree_date);
 	System::String^ c = transformer_int_string(P.sortie_date);
 	System::String^ d = a + " \t " + b + " \t " + c + "\n";
+
+	temps_sejour_total = temps_sejour_total + float(P.sortie_date) - float(P.entree_date);
+	//temps_sejour_total = float(dureetotal) / nombre_pieces_totales;
+	//System::String^ g = transformer_int_string(temps_sejour_total);
+	//System::String^ fin = "\n\nTemps moyen de fabrication : " + g +"\n";
+	//affichage->AppendText(fin);
 
 	affichage->AppendText(d);
 }
