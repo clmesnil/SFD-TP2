@@ -20,7 +20,6 @@ int bernoulli(float p)
 {
 	int retour = 0, max_nb = 1000;
 	float nb = float((rand() % max_nb)) / max_nb;
-	std::cout << "nb = " << nb << std::endl;
 	if (nb < p)
 	{
 		retour = 1;
@@ -41,42 +40,42 @@ int generer_prochaine_etape(T_Piece& p, int etape_actuelle) //renvoie le numéro 
 		if (bernoulli(proba_p))
 		{
 			proc_etape = 1;
-			std::cout << " ON RECOMMENCE " << std::endl;
+			//std::cout << " ON RECOMMENCE " << std::endl;
 		}
 		else
 		{
 			proc_etape = 0;
-			std::cout << " ON PART " << std::endl;
+			//std::cout << " ON PART " << std::endl;
 		}
 	}
 	return proc_etape;
 }
 
 
-void choisir_machine_etape(T_Piece& p, int etape) //donne à la piece le numéro de la prochaine machine qu'elle doit traverser dans l'étape donnée
+void choisir_machine_etape(T_Piece& p, int etape)	//donne à la piece le numéro de la prochaine machine qu'elle doit traverser dans l'étape donnée
 {
-	if (etape == 2)  //dans l'étape 2 on choisit entre les 2 machines 2 et 3
+	if (etape == 2)									//dans l'étape 2 on choisit entre les 2 machines 2 et 3
 	{
 		if (bernoulli(proba_q))
 		{
 			p.liste_machines[p.nb_etapes+1] = 2;
-			std::cout << "C PARTI DANS M2" << std::endl;
+			//std::cout << "Prochaine piece: M2" << std::endl;
 		}
 		else
 		{
 			p.liste_machines[p.nb_etapes+1] = 3;
-			std::cout << "C PARTI DANS M3" << std::endl;
+			//std::cout << "Prochaine piece: M3" << std::endl;
 		}
 	}
-	else if (etape == 1) //si on est dans l'étape 1 on n'a pas le choix
+	else if (etape == 1)							//si on est dans l'étape 1 on n'a pas le choix
 	{
 		p.liste_machines[p.nb_etapes+1] = 1;
-		std::cout << "C PARTI DANS M1" << std::endl;
+		//std::cout << "Prochaine piece: M1" << std::endl;
 	}
 }
 
 
-int calcul_DPE(int Entree, int M1, int M2, int M3)//pire fonction ever seen by chabrol => instant reported by chabrol
+int calcul_DPE(int Entree, int M1, int M2, int M3)	//pire fonction ever seen by chabrol => instant reported by chabrol
 {
 	int min1 = 0, min2 = 0, min = 0;
 	int retour = -1;
@@ -110,13 +109,11 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			System::Windows::Forms::DataVisualization::Charting::Chart^ chart2)
 {
 	srand(time(NULL));
-	int stop, delta;
 	int nb_pieces;
-	int nb_perdus = 0; //jamais incrémenté
-	int temps = 0; // Date de simulation
+	int nb_perdus = 0;					// nb pieces perdues
+	int temps = 0;						// Date de simulation
 	int id_piece = 1;
-	int res = 0;
-	int moyenne_temps_sejour = 0;
+	int res = 0;						// permet de déterminer quelle est l'opération à faire
 	int etape = 0;
 	float temps_sejour_total = 0.0, dur_moy_sortie = 0.0;
 	T_File file_1;
@@ -146,35 +143,26 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 	while (temps < duree_max) 
 	{
 
-		std::cout << std::endl << std::endl << "temps = " << temps<<std::endl;
+		//std::cout << std::endl << std::endl << "temps = " << temps<<std::endl;
 		res = calcul_DPE(E.DPE, Machine_1.DPE, Machine_2.DPE, Machine_3.DPE);
-		std::cout << "E.DPE = " << E.DPE << " / M1.DPE = " << Machine_1.DPE << " / M2.DPE = " << Machine_2.DPE << " / M3.DPE = " << Machine_3.DPE << std::endl;
-		std::cout << "res = " << res << std::endl;
+		//std::cout << "E.DPE = " << E.DPE << " / M1.DPE = " << Machine_1.DPE << " / M2.DPE = " << Machine_2.DPE << " / M3.DPE = " << Machine_3.DPE << std::endl;
+		//std::cout << "res = " << res << std::endl;
 		
 		if (res == 1)
 		{										// l'entrée avait la date la plus petite
-			temps = E.DPE; //
-			gerer_entree(E, temps);//
-			P = E.contenu;//
-			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   *****" << std::endl;
+			temps = E.DPE;
+			gerer_entree(E, temps);
+			P = E.contenu;
+			
 
 			if (Machine_1.etat == 0) 
 			{
 				deposer_piece_machine(Machine_1, P, temps);
 			}
-			/* n'est pas censé arriver */
-			/*
-			else if (est_pleine(file_1))
-			{
-				nb_perdus++;
-				E.etat = 2;
-				E.DPE = 9999;
-			}
-			*/
-			else // La file n'est pas pleine et M1 est occupée
+
+			else								// La file n'est pas pleine et M1 est occupée
 			{
 				P.entree_date = temps;
-				std::cout << "DEPOSER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 				deposer_piece_file(file_1, P);
 			}
 		}
@@ -184,9 +172,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			etape = 1;
 			temps = Machine_1.DPE;
 			P = Machine_1.contenu;
-			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   +++++" << std::endl;
 
-			std::cout << "res 2 ==== etape : " << etape << std::endl;
+			//std::cout << "res 2 ==== etape : " << etape << std::endl;
 			etape = generer_prochaine_etape(P, etape);
 			//choisir machine suivante
 			if (etape == 2) 
@@ -208,17 +195,14 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				}
 				else 
 				{
-					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					P = retirer_piece(file_1);
 					deposer_piece_machine(Machine_1, P, temps);
 					E.etat = 1;
-					//E.DPE = temps;
 				}
 			}
 			else if (P.liste_machines[P.nb_etapes] == 2 && est_pleine(file_2) == 0)  // File 2 n'est pas pleine
 			{				
 				P.sortie_M1 = temps;
-				std::cout << "DEPOSER PIECE\tF2 deb = " << file_2.debut << " F2 fin = " << file_2.fin << std::endl;
 				deposer_piece_file(file_2, P);
 				if (est_vide(file_1)) 
 				{
@@ -227,16 +211,14 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				}
 				else
 				{		
-					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					P = retirer_piece(file_1);
 					deposer_piece_machine(Machine_1, P, temps);
 					E.etat = 1;
-					//E.DPE = temps;
 				}	
 			}
 			else if (P.liste_machines[P.nb_etapes] == 2)
-			{											// File 2 pleine
-				Machine_1.etat = 2; // Machine 1 bloquée
+			{											
+				Machine_1.etat = 2;						// Machine 1 bloquée
 				Machine_1.DPE = 9999;
 			}
 
@@ -252,18 +234,13 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				}
 				else
 				{
-					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					P = retirer_piece(file_1);
 					deposer_piece_machine(Machine_1, P, temps);
-					
-					//E.etat = 1;
-					//E.DPE = temps;
 				}
 			}
 			else if (P.liste_machines[P.nb_etapes] == 3 && est_pleine(file_3) == 0)
-			{				// File 3 n'est pas pleine
+			{				
 				P.sortie_M1 = temps;
-				std::cout << "DEPOSER PIECE\tF3 deb = " << file_3.debut << " F3 fin = " << file_3.fin << std::endl;
 				deposer_piece_file(file_3, P);
 				if (est_vide(file_1))
 				{
@@ -272,11 +249,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				}
 				else
 				{
-					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					P = retirer_piece(file_1);
 					deposer_piece_machine(Machine_1, P, temps);
-					//E.etat = 1;
-					//E.DPE = temps;
 				}
 			}
 			else if (P.liste_machines[P.nb_etapes] == 3)                           // File 2 pleine
@@ -292,15 +266,14 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			etape = 2;
 			temps = Machine_2.DPE;
 			P = Machine_2.contenu;
-			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   -----" << std::endl;
 
-			std::cout << "res 3 ==== etape : " << etape << std::endl;
+			//std::cout << "res 3 ==== etape : " << etape << std::endl;
 			etape = generer_prochaine_etape(P, etape);
-			std::cout << "res 3 ==== etape : " << etape << std::endl;
+			// std::cout << "res 3 ==== nouvelle etape : " << etape << std::endl;
 			P.nb_etapes++;
 			if (etape == 0)
 			{
-				//on se casse tardplus
+				// la piece sort du système
 				deposer_piece_sortie(S, P, affichage, temps, temps_sejour_total);
 				if (est_vide(file_2))
 				{
@@ -309,8 +282,6 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				else
 				{
 					T_Piece Nouv_Piece;
-					std::cout << "RETIRER PIECE\tF2 deb = " << file_2.debut << " F2 fin = " << file_2.fin << std::endl;
-					std::cout << "F2.contenu = " << file_2.L[file_2.debut].identifiant << " " << file_2.L[file_2.debut].entree_date << std::endl;
 					Nouv_Piece = retirer_piece(file_2);
 					deposer_piece_machine(Machine_2, Nouv_Piece, temps);
 					if (Machine_1.etat == 2) {
@@ -341,18 +312,14 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					}
 					else
 					{
-						std::cout << "RETIRER PIECE\tF2 deb = " << file_2.debut << " F2 fin = " << file_2.fin << std::endl;
 						P = retirer_piece(file_2);
 						deposer_piece_machine(Machine_2, P, temps);
-						//E.etat = 1;
-						//E.DPE = temps;
 					}
 				}
 
 				else if (est_pleine(file_1) == 0)  // File 2 n'est pas pleine
 				{				
 					P.sortie_M1 = temps;
-					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					deposer_piece_file(file_1, P);
 					if (est_vide(file_2))
 					{
@@ -360,15 +327,12 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 						Machine_2.DPE = 9999;
 					}
 					else {
-						std::cout << "RETIRER PIECE\tF2 deb = " << file_2.debut << " F2 fin = " << file_2.fin << std::endl;
 						P = retirer_piece(file_2);
 						deposer_piece_machine(Machine_2, P, temps);
-						//E.etat = 1;
-						//E.DPE = temps;
 					}
 				}
-				else // n'arrive jamais normalement
-				{											// File 2 pleine
+				else 
+				{											
 					Machine_2.etat = 2; // Machine bloquée
 					Machine_2.DPE = 9999;
 				}
@@ -383,15 +347,13 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			etape = 2;
 			temps = Machine_3.DPE;
 			P = Machine_3.contenu;
-			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   /////" << std::endl;
-			std::cout << "res 4 ==== etape : " << etape << std::endl;
+			//std::cout << "res 4 ==== etape : " << etape << std::endl;
 			etape = generer_prochaine_etape(P, etape);
-			std::cout <<"res 4 ==== etape : "<< etape << std::endl;
+			//std::cout <<"res 4 ==== nouvelle etape : "<< etape << std::endl;
 			P.nb_etapes++;
 			if (etape == 0)
 			{
-				std::cout << "etape 0" << std::endl;
-				//on se casse tardplus
+				// La piece sort du système
 				deposer_piece_sortie(S, P, affichage, temps, temps_sejour_total);
 				if (est_vide(file_3))
 				{
@@ -400,7 +362,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				else
 				{
 					T_Piece Nouv_Piece;
-					std::cout << "RETIRER PIECE\tF3 deb = " << file_3.debut << " F3 fin = " << file_3.fin << "\tcont 1 =" << file_3.L[file_3.debut].entree_date << "\tcont 2 =" << file_3.L[file_3.debut].entree_date << std::endl;
+
 					Nouv_Piece = retirer_piece (file_3);
 					deposer_piece_machine(Machine_3, Nouv_Piece, temps);
 					if (Machine_1.etat == 2) {
@@ -430,18 +392,14 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					}
 					else
 					{
-						std::cout << "RETIRER PIECE\tF3 deb = " << file_3.debut << " F3 fin = " << file_3.fin << std::endl;
 						P = retirer_piece(file_3);
 						deposer_piece_machine(Machine_3, P, temps);
-						//E.etat = 1;
-						//E.DPE = temps;
 					}
 				}
 
 				else if (est_pleine(file_1) == 0)  // File 1 n'est pas pleine
 				{
 					P.sortie_M1 = temps;
-					std::cout << "DEPOSER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					deposer_piece_file(file_1, P);
 					if (est_vide(file_3))
 					{
@@ -450,11 +408,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					}
 					else
 					{
-						std::cout << "RETIRER PIECE\tF3 deb = " << file_3.debut << " F3 fin = " << file_3.fin << std::endl;
 						P = retirer_piece(file_3);
 						deposer_piece_machine(Machine_3, P, temps);
-						//E.etat = 1;
-						//E.DPE = temps;
 					}
 				}
 				else
@@ -466,35 +421,17 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			}
 
 		}
-	
-		//std::cout << temps << std::endl;
 
 	}
 
-	std::cout << " C FINI " << std::endl;
 
 	dur_moy_sortie = temps_sejour_total / S.nb;
 
 	affichage->Refresh();
 	System::String^ moy = "Moyenne du temps de séjour: " + transformer_int_string(dur_moy_sortie);
-	//moyenne_temps_sejour = temps_sejour_total / nb_pieces +1;
 	
 	affichage->AppendText(moy);
 	affichage->Refresh();
-
-	/*
-	int j = 2;
-	int i = 1;
-	System::String^ mm = transformer_int_string(i);
-	System::String^ k = transformer_int_string(j);
-
-	System::String^ l = k + " " + mm;
-	affichage->Text = l;
-	affichage->Refresh();*/
-
-	//affichage->AppendText("Ca fonctionne un peu (pas trop)");
-
-	//affichage du premier graphe
 
 	int x = 0;
 	while (x < nb_pieces)
@@ -566,7 +503,6 @@ void deposer_piece_machine(T_Machine & M, T_Piece P, int date_simulation)
 void deposer_piece_sortie(T_Sortie & S, T_Piece & P, System::Windows::Forms::RichTextBox^ affichage,
 																				int date_simulation, float temps_sejour_total)
 {
-	std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << std::endl;
 	P.sortie_date = date_simulation;
 	S.nb++;
 	S.L[S.nb] = P;
@@ -576,10 +512,6 @@ void deposer_piece_sortie(T_Sortie & S, T_Piece & P, System::Windows::Forms::Ric
 	System::String^ d = a + " \t " + b + " \t " + c + "\n";
 
 	temps_sejour_total = temps_sejour_total + float(P.sortie_date) - float(P.entree_date);
-	//temps_sejour_total = float(dureetotal) / nombre_pieces_totales;
-	//System::String^ g = transformer_int_string(temps_sejour_total);
-	//System::String^ fin = "\n\nTemps moyen de fabrication : " + g +"\n";
-	//affichage->AppendText(fin);
 
 	affichage->AppendText(d);
 }
