@@ -8,11 +8,13 @@ int tag = 1;
 
 void gerer_entree(T_Entree& E, int date)
 {
+	std::cout << E.contenu.identifiant << "\t" << E.contenu.entree_date << "\t" << E.contenu.sortie_date << std::endl;
 	E.contenu.entree_date = date;
 	E.contenu.sortie_date = -1;
 	E.contenu.identifiant = tag;
 	tag = tag + 1;
 	E.DPE = date + E.DIA;
+
 }
 
 
@@ -157,6 +159,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			temps = E.DPE; //
 			gerer_entree(E, temps);//
 			P = E.contenu;//
+			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   *****" << std::endl;
 
 			if (Machine_1.etat == 0) 
 			{
@@ -183,6 +186,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			etape = 1;
 			temps = Machine_1.DPE;
 			P = Machine_1.contenu;
+			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   +++++" << std::endl;
 
 			std::cout << "res 2 ==== etape : " << etape << std::endl;
 			etape = generer_prochaine_etape(P, etape);
@@ -196,7 +200,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 
 			if (P.liste_machines[P.nb_etapes] == 2 && Machine_2.etat == 0)// Machine 2 libre
 			{ 
-				P.sortie_M1 = temps;
+
 				vider_machine(Machine_1);
 				deposer_piece_machine(Machine_2, P, temps);
 				if (est_vide(file_1)) 
@@ -206,21 +210,9 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				}
 				else 
 				{
-					stop = 0;
-					while (stop == 0) 
-					{
-						P = retirer_piece(file_1);
-						delta = temps - P.entree_date;
-						if (true) 
-						{
-							stop = 1;
-							deposer_piece_machine(Machine_1, P, temps);
-						}
-						if (est_vide(file_1)) 
-						{
-							stop = 2;
-						}
-					}
+
+					P = retirer_piece(file_1);
+					deposer_piece_machine(Machine_1, P, temps);
 					E.etat = 1;
 					E.DPE = temps;
 				}
@@ -234,23 +226,10 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					Machine_1.etat = 0;
 					Machine_1.DPE = 9999;
 				}
-				else {
-					stop = 0;
-					while (stop == 0)
-					{
-						P = retirer_piece(file_1);
-						delta = temps - P.entree_date;
-						
-						if (true) 
-						{
-							stop = 1;
-							deposer_piece_machine(Machine_1, P, temps);
-						}
-						if (est_vide(file_1))
-						{
-							stop = 2;
-						}
-					}
+				else
+				{					
+					P = retirer_piece(file_1);
+					deposer_piece_machine(Machine_1, P, temps);
 					E.etat = 1;
 					E.DPE = temps;
 				}	
@@ -273,21 +252,9 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				}
 				else
 				{
-					stop = 0;
-					while (stop == 0)
-					{
-						P = retirer_piece(file_1);
-						delta = temps - P.entree_date;
-						if (true)
-						{
-							stop = 1;
-							deposer_piece_machine(Machine_1, P, temps);
-						}
-						if (est_vide(file_1))
-						{
-							stop = 2;
-						}
-					}
+					P = retirer_piece(file_1);
+					deposer_piece_machine(Machine_1, P, temps);
+					
 					//E.etat = 1;
 					//E.DPE = temps;
 				}
@@ -301,21 +268,10 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					Machine_1.etat = 0;
 					Machine_1.DPE = 9999;
 				}
-				else {
-					stop = 0;
-					while (stop == 0)
-					{
-						P = retirer_piece(file_1);
-						delta = temps - P.entree_date;
-						if (true) {
-							stop = 1;
-							deposer_piece_machine(Machine_1, P, temps);
-						}
-						if (est_vide(file_1))
-						{
-							stop = 2;
-						}
-					}
+				else
+				{
+					P = retirer_piece(file_1);
+					deposer_piece_machine(Machine_1, P, temps);
 					//E.etat = 1;
 					//E.DPE = temps;
 				}
@@ -332,6 +288,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 		{ 
 			temps = Machine_2.DPE;
 			P = Machine_2.contenu;
+			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   -----" << std::endl;
 
 			std::cout << "res 3 ==== etape : " << etape << std::endl;
 			etape = generer_prochaine_etape(P, etape);
@@ -362,8 +319,6 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			{
 				//on revient au début
 
-				//temps = Machine_1.DPE;
-				//P = Machine_1.contenu;
 				//choisir machine suivante
 				choisir_machine_etape(P, etape);
 				
@@ -380,21 +335,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					}
 					else
 					{
-						stop = 0;
-						while (stop == 0)
-						{
-							P = retirer_piece(file_2);
-							delta = temps - P.entree_date;
-							if (true)
-							{
-								stop = 1;
-								deposer_piece_machine(Machine_2, P, temps);
-							}
-							if (est_vide(file_2))
-							{
-								stop = 2;
-							}
-						}
+						P = retirer_piece(file_2);
+						deposer_piece_machine(Machine_2, P, temps);
 						//E.etat = 1;
 						//E.DPE = temps;
 					}
@@ -410,27 +352,15 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 						Machine_2.DPE = 9999;
 					}
 					else {
-						stop = 0;
-						while (stop == 0)
-						{
-							P = retirer_piece(file_2);
-							delta = temps - P.entree_date;
-							if (true) {
-								stop = 1;
-								deposer_piece_machine(Machine_2, P, temps);
-							}
-							if (est_vide(file_2))
-							{
-								stop = 2;
-							}
-						}
+						P = retirer_piece(file_2);
+						deposer_piece_machine(Machine_2, P, temps);
 						//E.etat = 1;
 						//E.DPE = temps;
 					}
 				}
-				else
+				else // n'arrive jamais normalement
 				{											// File 2 pleine
-					Machine_2.etat = 2; // Machine 1 bloquée
+					Machine_2.etat = 2; // Machine bloquée
 					Machine_2.DPE = 9999;
 				}
 
@@ -438,13 +368,12 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 						
 		}
 
-		//here
 
 		else if (res == 4)						// la machine M3 avec la date la plus petite
 		{
 			temps = Machine_3.DPE;
 			P = Machine_3.contenu;
-
+			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   /////" << std::endl;
 			std::cout << "res 4 ==== etape : " << etape << std::endl;
 			etape = generer_prochaine_etape(P, etape);
 			std::cout <<"res 4 ==== etape : "<< etape << std::endl;
@@ -474,9 +403,6 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			else
 			{
 				//on revient au début
-				//temps = Machine_1.DPE;
-				//P = Machine_1.contenu;
-
 				//choisir machine suivante
 				choisir_machine_etape(P, etape);
 
@@ -493,21 +419,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					}
 					else
 					{
-						stop = 0;
-						while (stop == 0)
-						{
-							P = retirer_piece(file_3);
-							delta = temps - P.entree_date;
-							if (true)
-							{
-								stop = 1;
-								deposer_piece_machine(Machine_3, P, temps);
-							}
-							if (est_vide(file_3))
-							{
-								stop = 2;
-							}
-						}
+						P = retirer_piece(file_3);
+						deposer_piece_machine(Machine_3, P, temps);
 						//E.etat = 1;
 						//E.DPE = temps;
 					}
@@ -522,21 +435,10 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 						Machine_3.etat = 0;
 						Machine_3.DPE = 9999;
 					}
-					else {
-						stop = 0;
-						while (stop == 0)
-						{
-							P = retirer_piece(file_3);
-							delta = temps - P.entree_date;
-							if (true) {
-								stop = 1;
-								deposer_piece_machine(Machine_3, P, temps);
-							}
-							if (est_vide(file_3))
-							{
-								stop = 2;
-							}
-						}
+					else
+					{
+						P = retirer_piece(file_3);
+						deposer_piece_machine(Machine_3, P, temps);
 						//E.etat = 1;
 						//E.DPE = temps;
 					}
