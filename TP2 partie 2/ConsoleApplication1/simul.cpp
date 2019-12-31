@@ -648,6 +648,7 @@ void deposer_piece_machine(T_Machine & M, T_Piece P, int date_simulation)
 void deposer_piece_sortie(T_Sortie & S, T_Piece & P, System::Windows::Forms::RichTextBox^ affichage,
 																				int date_simulation)
 {
+	std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << std::endl;
 	P.sortie_date = date_simulation;
 	S.nb++;
 	S.L[S.nb] = P;
