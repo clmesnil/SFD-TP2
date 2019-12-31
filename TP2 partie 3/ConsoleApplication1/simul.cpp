@@ -18,7 +18,7 @@ void gerer_entree(T_Entree& E, int date)
 	E.DPE = date + E.DIA;
 }
 
-int calcul_DPE(int Entree1, int Entree2, int M1, int M2, int Assemblage)//pire fonction ever seen by chabrol => instant reported by chabrol
+int calcul_DPE(int Entree1, int Entree2, int M1, int M2, int Assemblage)
 {
 
 	//std::cout << "Entree1 = " << Entree1 << "\tEntree2 = " << Entree2 << "\tM1 = " << M1 << "\tM2 = " << M2 << "\tAssemblage = " << Assemblage << std::endl;
@@ -305,17 +305,6 @@ void simuler(int duree_max, int duree_inter_arrivee1, int duree_inter_arrivee2, 
 	affichage->AppendText(moy);
 	affichage->Refresh();
 
-	/*
-	int j = 2;
-	int i = 1;
-	System::String^ mm = transformer_int_string(i);
-	System::String^ k = transformer_int_string(j);
-
-	System::String^ l = k + " " + mm;
-	affichage->Text = l;
-	affichage->Refresh();*/
-
-	//affichage->AppendText("Ca fonctionne un peu (pas trop)");
 
 	//affichage du premier graphe
 

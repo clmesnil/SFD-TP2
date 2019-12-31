@@ -1,9 +1,9 @@
 ﻿  simul.cpp
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(325,11): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(333,12): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(61,12): warning C4101: 'delta' : variable locale non référencée
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(61,6): warning C4101: 'stop' : variable locale non référencée
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(424): warning C4715: 'retirer_piece' : les chemins de contrôle ne retournent pas tous une valeur
-C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(280): warning C4700: variable locale 'nb_pieces' non initialisée utilisée
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(314,11): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(322,12): warning C4244: 'initialisation' : conversion de 'int' en 'float', perte possible de données
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(61,12): warning C4101: 'delta' : variable locale non référencée
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(61,6): warning C4101: 'stop' : variable locale non référencée
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(413): warning C4715: 'retirer_piece' : les chemins de contrôle ne retournent pas tous une valeur
+C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 3\ConsoleApplication1\simul.cpp(280): warning C4700: variable locale 'nb_pieces' non initialisée utilisée
   AssemblyInfo.obj : module MSIL détecté ; liens incrémentiels désactivés pour MSIL ; édition de liens complète en cours
-  ConsoleApplication1.vcxproj -> C:\Users\jaelv\Documents\GitHub\SFD-TP2\TP2 partie 3\x64\Debug\ConsoleApplication1.exe
+  ConsoleApplication1.vcxproj -> C:\Users\Clément\Documents\GitHub\SFD-TP2\TP2 partie 3\x64\Debug\ConsoleApplication1.exe

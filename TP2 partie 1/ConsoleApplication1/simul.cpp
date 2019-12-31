@@ -161,25 +161,12 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2,
 	}
 
 
-	//affichage->Refresh();
 	
 	moyenne_temps_sejour = temps_sejour_total / nb_pieces;
 	System::String^ moy = "Moyenne du temps de séjour: " + transformer_int_string(moyenne_temps_sejour);
 	affichage->AppendText(moy);
 	affichage->Refresh();
 
-	/*
-	int j = 2;
-	int i = 1;
-	System::String^ mm = transformer_int_string(i);
-	System::String^ k = transformer_int_string(j);
-
-	System::String^ l = k + " " + mm;
-	affichage->Text = l;
-	affichage->Refresh();*/
-
-
-	//affichage du premier graphe
 
 	int x = 1;
 	int y = 0;
