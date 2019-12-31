@@ -286,6 +286,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 
 		else if (res == 3)						// la machine M2 avec la dpe la plus petite
 		{ 
+			etape = 2;
 			temps = Machine_2.DPE;
 			P = Machine_2.contenu;
 			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   -----" << std::endl;
@@ -371,6 +372,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 
 		else if (res == 4)						// la machine M3 avec la date la plus petite
 		{
+			etape = 2;
 			temps = Machine_3.DPE;
 			P = Machine_3.contenu;
 			std::cout << P.identifiant << "\t" << P.entree_date << "\t" << P.sortie_date << "   /////" << std::endl;
