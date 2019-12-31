@@ -8,13 +8,11 @@ int tag = 1;
 
 void gerer_entree(T_Entree& E, int date)
 {
-	std::cout << E.contenu.identifiant << "\t" << E.contenu.entree_date << "\t" << E.contenu.sortie_date << std::endl;
 	E.contenu.entree_date = date;
 	E.contenu.sortie_date = -1;
 	E.contenu.identifiant = tag;
 	tag = tag + 1;
 	E.DPE = date + E.DIA;
-
 }
 
 
@@ -177,6 +175,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			else // La file n'est pas pleine et M1 est occupée
 			{
 				P.entree_date = temps;
+				std::cout << "DEPOSER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 				deposer_piece_file(file_1, P);
 			}
 		}
@@ -210,16 +209,17 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				}
 				else 
 				{
-
+					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					P = retirer_piece(file_1);
 					deposer_piece_machine(Machine_1, P, temps);
 					E.etat = 1;
-					E.DPE = temps;
+					//E.DPE = temps;
 				}
 			}
 			else if (P.liste_machines[P.nb_etapes] == 2 && est_pleine(file_2) == 0)  // File 2 n'est pas pleine
 			{				
 				P.sortie_M1 = temps;
+				std::cout << "DEPOSER PIECE\tF2 deb = " << file_2.debut << " F2 fin = " << file_2.fin << std::endl;
 				deposer_piece_file(file_2, P);
 				if (est_vide(file_1)) 
 				{
@@ -227,11 +227,12 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					Machine_1.DPE = 9999;
 				}
 				else
-				{					
+				{		
+					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					P = retirer_piece(file_1);
 					deposer_piece_machine(Machine_1, P, temps);
 					E.etat = 1;
-					E.DPE = temps;
+					//E.DPE = temps;
 				}	
 			}
 			else if (P.liste_machines[P.nb_etapes] == 2)
@@ -252,6 +253,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				}
 				else
 				{
+					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					P = retirer_piece(file_1);
 					deposer_piece_machine(Machine_1, P, temps);
 					
@@ -262,6 +264,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 			else if (P.liste_machines[P.nb_etapes] == 3 && est_pleine(file_3) == 0)
 			{				// File 3 n'est pas pleine
 				P.sortie_M1 = temps;
+				std::cout << "DEPOSER PIECE\tF3 deb = " << file_3.debut << " F3 fin = " << file_3.fin << std::endl;
 				deposer_piece_file(file_3, P);
 				if (est_vide(file_1))
 				{
@@ -270,6 +273,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				}
 				else
 				{
+					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					P = retirer_piece(file_1);
 					deposer_piece_machine(Machine_1, P, temps);
 					//E.etat = 1;
@@ -306,6 +310,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				else
 				{
 					T_Piece Nouv_Piece;
+					std::cout << "RETIRER PIECE\tF2 deb = " << file_2.debut << " F2 fin = " << file_2.fin << std::endl;
+					std::cout << "F2.contenu = " << file_2.L[file_2.debut].identifiant << " " << file_2.L[file_2.debut].entree_date << std::endl;
 					Nouv_Piece = retirer_piece(file_2);
 					deposer_piece_machine(Machine_2, Nouv_Piece, temps);
 					if (Machine_1.etat == 2) {
@@ -336,6 +342,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					}
 					else
 					{
+						std::cout << "RETIRER PIECE\tF2 deb = " << file_2.debut << " F2 fin = " << file_2.fin << std::endl;
 						P = retirer_piece(file_2);
 						deposer_piece_machine(Machine_2, P, temps);
 						//E.etat = 1;
@@ -346,6 +353,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				else if (est_pleine(file_1) == 0)  // File 2 n'est pas pleine
 				{				
 					P.sortie_M1 = temps;
+					std::cout << "RETIRER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					deposer_piece_file(file_1, P);
 					if (est_vide(file_2))
 					{
@@ -353,6 +361,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 						Machine_2.DPE = 9999;
 					}
 					else {
+						std::cout << "RETIRER PIECE\tF2 deb = " << file_2.debut << " F2 fin = " << file_2.fin << std::endl;
 						P = retirer_piece(file_2);
 						deposer_piece_machine(Machine_2, P, temps);
 						//E.etat = 1;
@@ -392,7 +401,8 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				else
 				{
 					T_Piece Nouv_Piece;
-					Nouv_Piece = retirer_piece(file_3);
+					std::cout << "RETIRER PIECE\tF3 deb = " << file_3.debut << " F3 fin = " << file_3.fin << "\tcont 1 =" << file_3.L[file_3.debut].entree_date << "\tcont 2 =" << file_3.L[file_3.debut].entree_date << std::endl;
+					Nouv_Piece = retirer_piece (file_3);
 					deposer_piece_machine(Machine_3, Nouv_Piece, temps);
 					if (Machine_1.etat == 2) {
 						Machine_1.etat = 1;
@@ -411,7 +421,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 
 				if (P.liste_machines[P.nb_etapes] == 1 && Machine_1.etat == 0)// Machine 1 libre
 				{
-					P.sortie_M1 = temps;
+					
 					vider_machine(Machine_3);
 					deposer_piece_machine(Machine_1, P, temps);
 					if (est_vide(file_3))
@@ -421,6 +431,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					}
 					else
 					{
+						std::cout << "RETIRER PIECE\tF3 deb = " << file_3.debut << " F3 fin = " << file_3.fin << std::endl;
 						P = retirer_piece(file_3);
 						deposer_piece_machine(Machine_3, P, temps);
 						//E.etat = 1;
@@ -431,6 +442,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 				else if (est_pleine(file_1) == 0)  // File 1 n'est pas pleine
 				{
 					P.sortie_M1 = temps;
+					std::cout << "DEPOSER PIECE\tF1 deb = " << file_1.debut << " F1 fin = " << file_1.fin << std::endl;
 					deposer_piece_file(file_1, P);
 					if (est_vide(file_3))
 					{
@@ -439,6 +451,7 @@ void simuler(int duree_max, int duree_inter_arrivee, int DT1, int DT2, int DT3,
 					}
 					else
 					{
+						std::cout << "RETIRER PIECE\tF3 deb = " << file_3.debut << " F3 fin = " << file_3.fin << std::endl;
 						P = retirer_piece(file_3);
 						deposer_piece_machine(Machine_3, P, temps);
 						//E.etat = 1;
@@ -529,7 +542,7 @@ int est_vide(T_File file) // 1 si vide
 
 int est_pleine(T_File file) // 1 si pleine
 {
-	return (file.debut==(file.fin)%10 +1);
+	return (file.debut==(file.fin) +1);
 }
 
 
@@ -568,18 +581,17 @@ void deposer_piece_sortie(T_Sortie & S, T_Piece & P, System::Windows::Forms::Ric
 T_Piece retirer_piece(T_File & file)
 {
 	T_Piece retour;
-	if (!est_vide(file))
-	{
-		retour = file.L[file.debut];
-		file.debut = (file.debut) + 1;
-		return (retour);
-	}
+	
+	retour = file.L[file.debut];
+	file.debut = (file.debut) + 1;
+	return (retour);
+	
 }
 
 
 void initialiser_file(T_File & file)
 {
-	file.debut = 500;
+	file.debut = 4;
 	file.fin = 4;
 }
 
